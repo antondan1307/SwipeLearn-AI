@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "vercel-build": "next build",
+    "export": "next build && next export"
   },
   "dependencies": {
     "next": "13.4.7",
