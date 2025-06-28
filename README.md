@@ -47,6 +47,6 @@ right side of the interface.
 When deploying to Vercel, make sure the project is detected as **Next.js**. If you see an error about a missing `public` folder, Vercel may have selected the wrong framework. Including the provided `vercel.json` file ensures the build output uses the `.next` directory so the preview works correctly.
 
 Set the Build Command to `npm run build` and the Output Directory to `.next` in
-your Vercel project settings. The `build` script runs `next build` followed by
-`next export` for local static exports, while Vercel automatically invokes the
-`vercel-build` script to run `next build` only.
+your Vercel project settings. The `build` script simply runs `next build`,
+producing the `.next` folder used by Vercel. If you need a static export for
+local hosting, run `npm run export` instead.
