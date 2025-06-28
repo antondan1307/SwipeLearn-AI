@@ -1,13 +1,23 @@
+import Link from 'next/link';
 import Navbar from '../components/Navbar';
-import VideoPlayer from '../components/VideoPlayer';
-import FlashcardSection from '../components/FlashcardSection';
+import { videos } from '../data/videos';
 
 export default function Home() {
   return (
     <div>
       <Navbar />
-      <VideoPlayer />
-      <FlashcardSection />
+      <main className="p-4">
+        <h2 className="text-lg font-semibold mb-2">Short Videos</h2>
+        <ul className="space-y-2">
+          {videos.map((v) => (
+            <li key={v.id}>
+              <Link href={`/video/${v.id}`} className="text-blue-600 underline">
+                {v.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </main>
     </div>
   );
 }

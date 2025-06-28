@@ -1,8 +1,10 @@
 # SwipeLearn-AI
 
-SwipeLearn-AI is a small prototype for learning English vocabulary.
-It is built with **Next.js** and **Tailwind CSS**. User interactions with
-flashcards are stored in **Firebase Firestore**.
+SwipeLearn-AI is a prototype web app for learning English vocabulary.
+It is built with **Next.js** and **Tailwind CSS**. The home page lists short
+videos (each under 30 seconds). Selecting a video shows it with a related
+flashcard that you can flip to see the answer. Each flip is logged to
+**Firebase Firestore** so your progress is saved.
 
 ## Setup
 

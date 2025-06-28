@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 
-export default function Flashcard({ term, definition }) {
+export default function Flashcard({ term, definition, videoId }) {
   const [flipped, setFlipped] = useState(false);
 
   const handleFlip = async () => {
@@ -13,6 +13,7 @@ export default function Flashcard({ term, definition }) {
       try {
         await addDoc(collection(db, 'flips'), {
           term,
+          videoId,
           viewedAt: Timestamp.now(),
         });
       } catch (err) {
