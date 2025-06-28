@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .perspective {
   perspective: 1000px;
 }
@@ -18,8 +22,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #e5e7eb; /* gray-300 */
-  border-radius: 0.5rem; /* rounded-lg */
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
   background: white;
   padding: 1rem;
   backface-visibility: hidden;
