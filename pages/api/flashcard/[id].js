@@ -1,11 +1,20 @@
 import { Configuration, OpenAIApi } from 'openai';
 import { videos } from '../../../data/videos';
+import { db } from '../../../lib/firebase';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 export default async function handler(req, res) {
   const { id } = req.query;
   const video = videos.find((v) => v.id === id);
   if (!video) {
     res.status(404).json({ error: 'Video not found' });
+    return;
+  }
+
+  const ref = doc(db, 'flashcards', id);
+  const existing = await getDoc(ref);
+  if (existing.exists()) {
+    res.status(200).json(existing.data());
     return;
   }
 
@@ -26,6 +35,7 @@ export default async function handler(req, res) {
     } catch (err) {
       return res.status(500).json({ error: 'Failed to parse OpenAI response' });
     }
+    await setDoc(ref, data);
     res.status(200).json(data);
   } catch (err) {
     console.error('OpenAI error', err);
