@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import Navbar from '../../components/Navbar';
 import VideoPlayer from '../../components/VideoPlayer';
 import Flashcard from '../../components/Flashcard';
+import Leaderboard from '../../components/Leaderboard';
 import { videos } from '../../data/videos';
 import { useEffect, useState } from 'react';
 
@@ -39,14 +40,19 @@ export default function VideoPage() {
   return (
     <div>
       <Navbar />
-      <VideoPlayer src={video.src} />
-      <section className="p-4 text-center">
-        <Flashcard
-          term={(card && card.term) || video.question}
-          definition={(card && card.definition) || video.answer}
-          videoId={id}
-        />
-      </section>
+      <div className="flex">
+        <div className="flex-1">
+          <VideoPlayer src={video.src} />
+          <section className="p-4 text-center">
+            <Flashcard
+              term={(card && card.term) || video.question}
+              definition={(card && card.definition) || video.answer}
+              videoId={id}
+            />
+          </section>
+        </div>
+        <Leaderboard />
+      </div>
     </div>
   );
 }

@@ -6,7 +6,8 @@ videos (each under 30 seconds). Selecting a video shows it with a related
 flashcard that you can flip to see the answer. If a card isn't already
 defined, the app calls the **OpenAI API** to generate one from the video
 transcript. Each flip is logged to **Firebase Firestore** so your progress is
-saved.
+saved. A leaderboard on the right ranks users by how many flashcards they have
+flipped.
 
 ## Setup
 
@@ -38,7 +39,8 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
 Each flashcard flip is logged to Firestore. When a video page loads the server
 uses OpenAI to build a flashcard from the transcript if one has not been
-predefined.
+predefined. Flip counts are tallied to build the leaderboard displayed on the
+right side of the interface.
 
 ## Deployment
 

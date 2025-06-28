@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { collection, addDoc, Timestamp } from 'firebase/firestore';
+import { collection, addDoc, Timestamp, doc, updateDoc, setDoc, increment } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 
 export default function Flashcard({ term, definition, videoId }) {
@@ -16,6 +16,16 @@ export default function Flashcard({ term, definition, videoId }) {
           videoId,
           viewedAt: Timestamp.now(),
         });
+        const username =
+          typeof window !== 'undefined'
+            ? localStorage.getItem('username') || 'guest'
+            : 'guest';
+        const ref = doc(db, 'scores', username);
+        try {
+          await updateDoc(ref, { points: increment(1) });
+        } catch (err) {
+          await setDoc(ref, { name: username, points: 1 });
+        }
       } catch (err) {
         console.error('Failed to record flip', err);
       }
