@@ -1,9 +1,11 @@
 # SwipeLearn-AI
 
-A simple web application for learning English vocabulary with short videos and flashcards.
-
-This is a prototype. It lets users watch a short embedded video and practice vocabulary using interactive flashcards.
+SwipeLearn-AI is a demo web application for practicing English vocabulary.
+It uses **React** and **Tailwind CSS** to display a short video and interactive
+flashcards.
 
 ## Running
 
-Open `index.html` in a web browser.
+Simply open `index.html` in a web browser. No build step is required because it
+loads React and Tailwind from CDNs.
+
