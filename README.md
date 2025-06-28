@@ -39,3 +39,7 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser.
 Each flashcard flip is logged to Firestore. When a video page loads the server
 uses OpenAI to build a flashcard from the transcript if one has not been
 predefined.
+
+## Deployment
+
+When deploying to Vercel, make sure the project is detected as **Next.js**. If you see an error about a missing `public` folder, Vercel may have selected the wrong framework. Including the provided `vercel.json` file ensures the build output uses the `.next` directory so the preview works correctly.
