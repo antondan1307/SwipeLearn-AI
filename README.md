@@ -1,0 +1,54 @@
+# SwipeLearn-AI
+
+SwipeLearn-AI is a prototype web app for learning English vocabulary.
+It is built with **Next.js** and **Tailwind CSS**. The home page lists short
+videos (each under 30 seconds). Selecting a video shows it with a related
+flashcard that you can flip to see the answer. If a card isn't already
+defined, the app calls the **OpenAI API** to generate one from the video
+transcript. The generated card is cached in **Firebase Firestore** so
+subsequent visitors load it instantly. Each flip is logged to **Firebase Firestore** so your progress is
+saved. A leaderboard on the right ranks users by how many flashcards they have
+flipped.
+
+## Setup
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Provide your Firebase credentials in a `.env` file using these variables:
+
+```
+NEXT_PUBLIC_FIREBASE_API_KEY=...
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=...
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=...
+NEXT_PUBLIC_FIREBASE_APP_ID=...
+OPENAI_API_KEY=...
+```
+
+3. Run the development server:
+
+```bash
+npm run dev
+```
+
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
+
+Each flashcard flip is logged to Firestore. When a video page loads the server
+uses OpenAI to build a flashcard from the transcript if one has not been
+predefined. The result is stored under the `flashcards` collection so the
+OpenAI request only happens once. Flip counts are tallied to build the
+leaderboard displayed on the right side of the interface.
+
+## Deployment
+
+When deploying to Vercel, make sure the project is detected as **Next.js**. If you see an error about a missing `public` folder, Vercel may have selected the wrong framework. Including the provided `vercel.json` file ensures the build output uses the `.next` directory so the preview works correctly.
+
+Set the Build Command to `npm run build` and the Output Directory to `.next` in
+your Vercel project settings. The `build` script simply runs `next build`,
+producing the `.next` folder used by Vercel. If you need a static export for
+local hosting, run `npm run export` instead.
